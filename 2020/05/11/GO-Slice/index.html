@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>demo.md | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: Go 语言学习笔记GO切片学习笔记 Slice通常写作[]T,可以看成是个不定长的数组。 slice有三个属性指针，长度，容量；a. 指针指向数组中第一个可以从slice中访问的元素b. 长度是值slice中元素的个数 len(s) 表示c. 容量大小通常是slice起始元素到底层数组最后一个元素间的元素个数 cap(s) 表示。    定义一个切片：   123months:&#x3D;[">
+<meta property="og:type" content="article">
+<meta property="og:title" content="demo.md">
+<meta property="og:url" content="http://yoursite.com/2020/05/11/GO-Slice/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: Go 语言学习笔记GO切片学习笔记 Slice通常写作[]T,可以看成是个不定长的数组。 slice有三个属性指针，长度，容量；a. 指针指向数组中第一个可以从slice中访问的元素b. 长度是值slice中元素的个数 len(s) 表示c. 容量大小通常是slice起始元素到底层数组最后一个元素间的元素个数 cap(s) 表示。    定义一个切片：   123months:&#x3D;[">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-11T15:31:38.000Z">
+<meta property="article:modified_time" content="2020-05-11T16:44:20.625Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-GO-Slice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/11/GO-Slice/" class="article-date">
+  <time datetime="2020-05-11T15:31:38.000Z" itemprop="datePublished">2020-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      demo.md
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="title-Go-语言学习笔记"><a href="#title-Go-语言学习笔记" class="headerlink" title="title: Go 语言学习笔记"></a>title: Go 语言学习笔记</h2><h1 id="GO切片学习笔记"><a href="#GO切片学习笔记" class="headerlink" title="GO切片学习笔记"></a>GO切片学习笔记</h1><ol>
+<li>Slice通常写作[]T,可以看成是个不定长的数组。</li>
+<li>slice有三个属性指针，长度，容量；<br>a. 指针指向数组中第一个可以从slice中访问的元素<br>b. 长度是值slice中元素的个数 <em>len(s)</em> 表示<br>c. 容量大小通常是slice起始元素到底层数组最后一个元素间的元素个数 <em>cap(s)</em> 表示。  </li>
+</ol>
+<p>定义一个切片：  </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">months:=[...]<span class="keyword">string</span>&#123;<span class="number">1</span>:<span class="string">"jan"</span>,<span class="number">2</span>:<span class="string">"feb"</span>,<span class="number">3</span>:<span class="string">"march"</span>,<span class="number">4</span>:<span class="string">"april"</span>,<span class="number">5</span>:<span class="string">"may"</span>,</span><br><span class="line">		<span class="number">6</span>:<span class="string">"june"</span>,<span class="number">7</span>:<span class="string">"july"</span>,<span class="number">8</span>:<span class="string">"aug"</span>,<span class="number">9</span>:<span class="string">"sep"</span>,<span class="number">10</span>:<span class="string">"oct"</span>,</span><br><span class="line">		<span class="number">11</span>:<span class="string">"nov"</span>,<span class="number">12</span>:<span class="string">"dec"</span>&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<p>切片的操作：  </p>
+<ol>
+<li><strong><em>slice[i:j]</em></strong> (0&lt;=i&lt;=j&lt;=cap(s)),意义是将<strong>slice</strong>从<em>i</em>到<em>j-1</em>的元素都赋给新的切片<br> <code>q2:=months[4:7]   //[&quot;april&quot;,&quot;may&quot;,&quot;june&quot;]</code><br> <code>summer:=months[6:9]   //[&quot;june&quot;,&quot;july&quot;,&quot;aug&quot;]</code></li>
+<li><strong><em>make</em></strong>  创建切片<br> <code>make([]T,len,cap)</code> 创建一个切片指定长度和容量</li>
+<li><strong><em>append</em></strong> 给slice后追加新的元素   <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> runes []<span class="keyword">rune</span></span><br><span class="line"><span class="keyword">for</span> _,r:=<span class="keyword">range</span> <span class="string">"hello, world"</span>&#123;</span><br><span class="line">    runes=<span class="built_in">append</span>(runes,r)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//runes ['h' 'e' 'l' 'l' 'o' ',' '' 'w' 'o' 'r' 'l' 'd']</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">appendInt</span><span class="params">(x[]<span class="keyword">int</span> ,y <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line"><span class="keyword">var</span> z []<span class="keyword">int</span></span><br><span class="line">zlen:=<span class="built_in">len</span>(x)+<span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> zlen&lt;<span class="built_in">cap</span>(x) &#123;	<span class="comment">//如果仍剩余slice容量，就直接扩展slice的内容</span></span><br><span class="line">	z=x[:zlen]</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	zcap:=zlen</span><br><span class="line">	<span class="keyword">if</span> zcap&lt;<span class="number">2</span>*<span class="built_in">len</span>(x) &#123;		<span class="comment">//如果zcap小于两倍的len(x) 就自动将cap(z)设置为两倍的len(x)值</span></span><br><span class="line">		zcap=<span class="number">2</span>*<span class="built_in">len</span>(x)</span><br><span class="line">	&#125;</span><br><span class="line">	z=<span class="built_in">make</span>([]<span class="keyword">int</span>, zlen,zcap)</span><br><span class="line">	<span class="built_in">copy</span>(z,x)</span><br><span class="line">&#125;</span><br><span class="line">z[<span class="built_in">len</span>(x)]=y</span><br><span class="line"><span class="keyword">return</span> z</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+根据append可以得到slice中长度和容量的不同点：<br>长度是切片中元素的个数，容量是容纳元素空间的总大小，当容量大小不够时，一般会将原容量<strong><em>翻倍</em></strong>。<br>当使用slice[i:j]生成新的切片时，新切片的容量大小为<em>cap(slice)-i</em>。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/11/GO-Slice/" data-id="cka2nz7420000zwvc3oow9869" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/02/my-first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">My first blog</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/11/GO-Slice/">demo.md</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/02/my-first-blog/">My first blog</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
